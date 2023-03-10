@@ -1,4 +1,4 @@
-def find_same_field_value_polygons(seleccio_12_13_tenen_registre_excel, codiallaus): 
+def find_same_field_value_polygons(seleccio_12_13_tenen_registre_excel, codiallau): 
     #EN ESTOS DOS CAMPOS INTRODUCES PRIMERO EL NOMBRE DE LA CAPA (LA QUE SALE EN EL NAVEGADOR DE QGIS) Y EL NOMBRE DEL CAMPO QUE QUIERES CONSULTAR
     
     # Obtener todas las características de la capa
@@ -10,7 +10,7 @@ def find_same_field_value_polygons(seleccio_12_13_tenen_registre_excel, codialla
     # Recorrer todas las características
     for feature in features:
         # Obtener el valor del campo especificado
-        field_value = feature[codiallaus] #MODIFICAR EL CAMPO "codiallaus" POR EL CAMPO QUE QUIERES CONSULTAR
+        field_value = feature[codiallau] #MODIFICAR EL CAMPO "codiallaus" POR EL CAMPO QUE QUIERES CONSULTAR
         
         # Verificar si el valor del campo ya está en el diccionario
         if field_value in field_value_dict:
@@ -45,4 +45,7 @@ def find_same_field_value_polygons(seleccio_12_13_tenen_registre_excel, codialla
 layer = iface.activeLayer()
 field_name = "codiallau"
 result = find_same_field_value_polygons(layer, field_name)
-print(result)
+if len(result) > 0:
+    print(result)
+else:
+    print("No existeix cap polígon repetit")
